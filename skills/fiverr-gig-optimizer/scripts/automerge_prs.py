@@ -177,10 +177,34 @@ def _siblings_map(api, repo_id, revision):
     return {s.rfilename: getattr(s, "blob_id", None) for s in info.siblings}
 
 
+def _merge_base(api, repo_id, ref):
+    """The commit where `ref` branched off main, or None if undeterminable.
+
+    Needed so a *stale* PR isn't mistaken for a destructive one: files merged into
+    main after the PR branched are simply absent from its head, which a naive
+    main-vs-head diff reads as deletions. Comparing against the branch point makes
+    "removed" mean *this PR actually deletes data*.
+    """
+    try:
+        main_shas = {c.commit_id for c in api.list_repo_commits(repo_id, repo_type="dataset")}
+        for c in api.list_repo_commits(repo_id, repo_type="dataset", revision=ref):
+            if c.commit_id in main_shas:
+                return c.commit_id
+    except Exception:  # API/network — caller falls back to comparing against main
+        pass
+    return None
+
+
 def diff_files(api, repo_id, pr_num):
-    """Return (added, removed, modified) filename lists for the PR."""
-    main = _siblings_map(api, repo_id, "main")
-    pr = _siblings_map(api, repo_id, f"refs/pr/{pr_num}")
+    """Return (added, removed, modified) filename lists for the PR.
+
+    The baseline is the PR's branch point (falling back to main), so an outdated
+    but purely-additive PR is not misread as removing the files main gained since.
+    """
+    ref = f"refs/pr/{pr_num}"
+    base_rev = _merge_base(api, repo_id, ref)
+    main = _siblings_map(api, repo_id, base_rev or "main")
+    pr = _siblings_map(api, repo_id, ref)
     added = [f for f in pr if f not in main]
     removed = [f for f in main if f not in pr]
     modified = [f for f in pr if f in main
