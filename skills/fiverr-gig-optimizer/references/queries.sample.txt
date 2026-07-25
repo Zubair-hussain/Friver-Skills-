@@ -1,0 +1,58 @@
+# Default scrape-rotation keyword pool.
+#
+# A daily runner picks one line per day (see USER_MANUAL.md), so the pool size is
+# also the revisit interval: 33 keywords -> each is re-scraped about monthly, which
+# comfortably outpaces how fast Fiverr pricing and gig counts actually move.
+#
+# Why breadth matters: competition counts and price percentiles are only useful in
+# the category you sell in. A pool covering just one vertical produces a dataset
+# that is useless to most sellers, so this spans the major Fiverr verticals while
+# keeping depth in Programming & Tech / AI.
+#
+# Lines starting with '#' and blank lines are ignored. Add your own categories
+# freely — one keyword per line, as you would type it into Fiverr search.
+
+# --- Programming & Tech / AI (depth) ---
+ai chatbot
+n8n automation
+ai agent development
+web scraping
+custom gpt
+ai voice agent
+rag chatbot
+crypto trading bot
+python automation
+api integration
+saas mvp development
+shopify app development
+
+# --- Graphics & Design ---
+logo design
+brand identity
+ui ux design
+thumbnail design
+packaging design
+
+# --- Digital Marketing ---
+seo optimization
+social media marketing
+email marketing
+google ads management
+tiktok marketing
+
+# --- Writing & Translation ---
+copywriting
+blog writing
+technical writing
+resume writing
+
+# --- Video & Animation ---
+video editing
+explainer video
+motion graphics
+faceless video
+
+# --- Data ---
+data visualization
+data entry
+power bi dashboard
