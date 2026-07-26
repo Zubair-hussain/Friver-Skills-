@@ -226,7 +226,7 @@ OAuth tokens expire and will eventually break the scheduled run.
 - **Code:** MIT — [`LICENSE`](LICENSE).
 - **Data + docs:** CC-BY-4.0 — [`LICENSE-DATA`](LICENSE-DATA).
 - Community dataset (CC-BY-4.0): set in `scoring-config.json → dataset_repo`
-  (`https://huggingface.co/datasets/Ahad690/fiverr-gigs`).
+  [https://huggingface.co/datasets/Ahad690/fiverr-gigs](https://huggingface.co/datasets/Ahad690/fiverr-gigs).
 
 ## Troubleshooting
 
