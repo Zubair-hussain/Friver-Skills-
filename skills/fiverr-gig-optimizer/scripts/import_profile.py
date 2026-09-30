@@ -149,6 +149,14 @@ def import_profile(url_or_name, cfg, limit=20, today=None):
 
 
 def main(argv=None):
+    print(
+        "error: automatic Fiverr profile import is disabled in the supported 2026 "
+        "workflow. Paste or export your own Gig details instead.",
+        file=sys.stderr,
+    )
+    return 2
+
+    # Historical CLI retained below so parsing fixtures remain testable.
     ap = argparse.ArgumentParser(description="Import a user's own public Fiverr profile + gig prices.")
     ap.add_argument("--url", required=True, help="Fiverr profile URL or username.")
     ap.add_argument("--limit", type=int, default=20, help="Max gigs to fetch details for.")
