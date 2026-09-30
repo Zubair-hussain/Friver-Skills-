@@ -6,10 +6,8 @@ description: >
   using deterministic Python scripts for all competition and pricing numbers.
   Use when the user asks to optimize a Fiverr gig, research a Fiverr keyword,
   check gig competition, price a gig, or plan a Fiverr launch.
-allowed-tools: Bash(python3 *) Read Write
-argument-hint: "[service or keyword]"
 metadata:
-  version: "1.1"
+  version: "1.2"
 license: MIT
 ---
 
@@ -40,9 +38,12 @@ gig or its tiers; plan a Fiverr launch; build a gig catalog from a service list.
    fabricate one.
 4. **Offer design is allowed.** Delivery days, revisions, and included items are
    the seller's choices; keep them realistic and consistent with stated turnaround.
-5. **Strip PII before any contribution** (see `contribute.py` / DATA_POLICY.md).
+5. **Strip PII before any contribution** (see `contribute.py` /
+   `docs/governance/DATA_POLICY.md`).
 
-Run scripts as: `python3 ${CLAUDE_SKILL_DIR}/scripts/<name>.py ...`
+Resolve the directory containing this `SKILL.md`, then run scripts as:
+`python <skill-directory>/scripts/<name>.py ...`. Use `python3` instead when
+that is the platform's Python executable.
 
 ## Workflow
 
@@ -51,12 +52,11 @@ Run scripts as: `python3 ${CLAUDE_SKILL_DIR}/scripts/<name>.py ...`
 existing gig URLs or "none"; monthly revenue goal; experience level
 (New / L1 / L2 / Top Rated). If fewer than 3 services, ask for more.
 
-**Step 1b — Optional profile import.** If the user gives their Fiverr profile
-URL, run `import_profile.py --url "<url>"` to pre-fill name, seller level, and
-their existing gigs *with current prices/tags* (public data only — no private
-analytics). Use `existing_gigs` to optimize what they already have and
-`suggested_services` as keyword seeds; still ask for the revenue goal and any
-new services. Skip if no link is given — never require it.
+**Step 1b — Existing profile data.** Ask the user to paste or export their own
+current Gig titles, tags, packages, and prices. Do not request a Fiverr password,
+session cookie, or account access. The legacy profile-import script is not part
+of the supported workflow because automated Fiverr access is prohibited by the
+reviewed 2026 Terms of Service.
 
 **Step 2 — Generate keyword candidates (FR6a).** From the services, propose
 single-service keywords and 2-way (sometimes 3-way) combos, following
@@ -70,14 +70,9 @@ measurements* — generating them is allowed. They get scored next.
   for that keyword. Write `top_gigs` to a temp file to feed Step 4.
 - **Path B (manual):** ask the user to paste the "X services available" count
   Fiverr shows for the keyword. Never fabricate it.
-- **Path C (live scrape, opt-in):** run
-  `scrape.py --query "<kw>" [--category "<cat>"] [--limit N]`. The primary
-  engine (vendored Perseus reader) needs no key and returns the real search
-  total as `gig_count_in_search`; on a non-residential IP set `PROXY_URL`. With
-  an Apify key it can fall back to the configured actor (which cannot supply the
-  search total — count then comes from a manual paste). Then run
-  `build_benchmarks.py` to build the pools + index. Live scraping is the user's
-  responsibility under Fiverr's ToS.
+- **Path C (user-owned dataset):** import a JSON or CSV that the user lawfully
+  collected or exported, then run `build_benchmarks.py` to build the pricing
+  pools and lookup index. Do not scrape Fiverr or ask for account credentials.
 
 **Step 4 — Score (FR7/FR8).** For each keyword:
 `score_keyword.py --keyword "<kw>" --gig-count <N> [--top-gigs top.json]`.
@@ -111,14 +106,14 @@ deterministic prompt mirroring the canvas design.
 **Step 7 — Render (FR14/FR15).**
 `build_catalog.py gig-config.json` → `fiverr-catalog.html`. Optionally
 `build_pdfs.py gig-config.json` for per-gig PDFs (skips if no Chrome).
-After a live scrape, offer contribution (default no).
+After a user-owned data import, offer contribution (default no).
 
 **When the user agrees to contribute** (e.g. "contribute my data", "share it"):
 run `python contribute.py` from the repo root — it auto-locates
 `benchmarks.local.json`, strips PII, and previews. If it prints the token-setup
 guidance and a `huggingface.co/settings/tokens/new` link (no token cached yet),
-relay that link, tell them to create a fine-grained token with **Write** on
-`Ahad690/fiverr-gigs`, then re-run with the paste: `python contribute.py --token
+relay that link, tell them to create a fine-grained token with **Write** on the
+dataset repository configured in `scoring-config.json`, then re-run with the paste: `python contribute.py --token
 <pasted>` (cached, so it is one-time). Always show the `--dry-run` preview and
 confirm before the real upload. Never store or echo the token anywhere but the
 command; nothing uploads without it.
@@ -134,7 +129,7 @@ command; nothing uploads without it.
 
 ## Error handling
 
-- No scraper key → offer Path A (sample) or Path B (manual).
+- No suitable local data → offer Path A (sample) or Path B (manual).
 - `query_dataset.py` `no_match` / LOW confidence → ask for a manual count.
 - Pricing tier `confidence:"low"` → present the number but flag it; for n=0,
   recommend nothing for that tier.
