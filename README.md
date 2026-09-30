@@ -1,271 +1,182 @@
 <div align="center">
 
-<img src="assets/mascot.png" width="130" alt="The fiverr-gig-optimizer robot scout, holding a checklist clipboard with a price tag">
+<img src="assets/plugin-logo.svg" width="112" alt="Fiverr Gig Optimizer original FGO project logo">
 
-# fiverr-gig-optimizer
+<img src="assets/readme-hero-animated.svg" width="900" alt="Animated Fiverr Gig Optimizer workflow: real inputs, deterministic scoring, policy validation, and professional output">
 
-**gurus sell you guesses about Fiverr. this one measures it — and says so when it can't.** 📋
+# Fiverr Gig Optimizer
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=20&duration=2600&pause=800&color=1DBF73&center=true&vCenter=true&width=720&height=42&lines=Fiverr+gig+research+that+refuses+to+guess;Competition%2C+demand+%26+pricing+from+auditable+scripts;No+data%3F+It+asks+you+%E2%80%94+never+invents" alt="fiverr-gig-optimizer — competition, demand and pricing from auditable scripts">
+**Evidence-backed gig research, pricing, copy, and policy preflight checks.**
 
-<br/>
-
-**82 tests · a provenance line under every score · 0 market numbers guessed**
-
-<br/>
-
-![competition](https://img.shields.io/badge/competition-scored_from_real_counts-1dbf73?style=flat-square&labelColor=0a2e1c)
-![demand](https://img.shields.io/badge/demand-null_when_unknown-e8c66b?style=flat-square&labelColor=3a2806)
-![pricing](https://img.shields.io/badge/pricing-competitor_percentiles-79b8ff?style=flat-square&labelColor=10254f)
-
-<br/>
-
-<img src="assets/demo-catalog.png" width="860" alt="A rendered fiverr-catalog.html — gig cards with canvas thumbnails, 3-tier pricing from competitor percentiles, and a provenance line under every score">
-
-*The deliverable: every score carries a provenance line telling you where the number came from.*
+![supported core coverage](https://img.shields.io/badge/supported_core_coverage-94%25-brightgreen?style=flat-square)
+![tests](https://img.shields.io/badge/tests-94_passed-1dbf73?style=flat-square)
 
 </div>
 
-<br/>
+This local-first skill turns your services into a Fiverr Gig catalog with titles,
+tags, package pricing, descriptions, image specifications, and a phased launch
+plan. Market numbers always come from deterministic scripts and visible data;
+the model never invents competition, demand, or competitor pricing.
 
-A Claude Code skill that turns your list of services into an optimized,
-research-backed Fiverr gig catalog — titles, tags, 3-tier pricing,
-descriptions, thumbnail specs, a phase-based launch plan, and a cross-sell map.
-**Every market number it reports — competition, demand, competitor prices —
-comes from a deterministic Python script operating on real data. It never
-guesses.**
+> This is an independent project and is not affiliated with or endorsed by
+> Fiverr International Ltd. Fiverr is a trademark of its respective owner.
 
-## Why this isn't a fluff tool
+## What changed for 2026–2027
 
-<img src="assets/mascot-shrug.png" width="150" align="right" alt="The robot scout holding its clipboard out to the viewer with a question mark on it — when it has no data, it asks you instead of guessing">
+- A deterministic policy preflight checks current title, tag, description,
+  package, revision, pricing, and image-copy constraints before rendering.
+- A weekly GitHub Action hashes the official Fiverr Help Center policy pages.
+  When a source changes, it opens a review PR instead of silently changing the
+  optimizer's behavior.
+- Direct marketplace scraping and automated profile import are no longer part
+  of the supported workflow. Fiverr's reviewed Terms prohibit automated
+  crawling/scraping, so current counts should be pasted by the user or loaded
+  from a dataset the user is allowed to use.
+- GitHub Dependabot checks Python and Actions dependencies monthly.
+- Generated HTML safely escapes embedded JSON before placing it in a script.
 
-Most "Fiverr optimizer" prompts tell the model to *mentally estimate* how many
-competitors a keyword has and what to charge. That output is hallucinated and
-changes every run. Here, the LLM never produces a market figure. Competition,
-demand, and pricing are computed by auditable scripts (`score_keyword.py`,
-`query_dataset.py`, `analyze_pricing.py`) from data you can see. If the data
-isn't there, the skill asks you or says it doesn't have it.
+Policy automation is deliberately reviewable: a changed web page does not prove
+that a specific operational limit changed. The bot flags the source, then a
+maintainer reviews and updates `policy-rules.json` with source-backed values.
 
-Offer-design choices (delivery days, revisions, what's in each package) *are*
-authored by the model — those are your decisions, not market measurements.
+## ChatGPT and Codex
 
-## Install
+The repository now contains a validated OpenAI plugin manifest at
+`.codex-plugin/plugin.json`. On supported ChatGPT and Codex plugin surfaces,
+import the repository or its ZIP, select **Fiverr Gig Optimizer**, and start with
+one of the included prompts. Codex can also use the repository directly:
 
+```bash
+codex -C /path/to/fiverr-gig-optimizer
 ```
-/plugin marketplace add Ahad690/fiverr-gig-optimizer
+
+See the complete [ChatGPT and Codex setup guide](docs/guides/OPENAI_SETUP.md),
+including the fallback for ChatGPT Projects that do not support plugin import.
+
+## GitHub Pages
+
+The animated, responsive project site is a self-contained [`index.html`](index.html)
+with no CDN or build step. After pushing the repository, choose **GitHub Actions**
+as the Pages source under **Settings → Pages**. The included deployment workflow
+publishes the page on pushes to `main`, or it can be run manually.
+
+See the [GitHub Pages deployment guide](docs/guides/GITHUB_PAGES.md).
+
+## Claude Code compatibility
+
+Replace the placeholder with your own GitHub account after publishing the repo:
+
+```text
+/plugin marketplace add YOUR_GITHUB_USERNAME/fiverr-gig-optimizer
 /plugin install fiverr-gig-optimizer@fiverr-tools
 ```
 
-For reproducible installs, pin to a release tag or commit SHA. Validate locally
-with `claude plugin validate .`.
+The scoring core uses only Python's standard library. Install optional community
+dataset support with:
 
-## The three data paths
-
-1. **Sample data (default, free).** Ships with `benchmarks.sample.json` and a
-   deterministic keyword lookup (`query_dataset.py`). **The sample data is
-   partial and dated** — every result is labeled with its dataset date and a
-   match confidence (HIGH / MEDIUM / LOW). On a weak match the skill asks you
-   for a count instead of inventing one.
-2. **Manual counts.** Open Fiverr, search your keyword, paste the
-   "X services available" count. The skill scores exactly that number.
-3. **Live scrape (opt-in).** `scrape.py` reads fresh gigs for your categories
-   and — uniquely — recovers the real search total as `gig_count_in_search`.
-   The **default engine needs no API key** (works from a residential IP; set
-   `PROXY_URL` otherwise). An optional **Apify fallback** (your key) covers
-   proxy-backed retries. Then `build_benchmarks.py` builds the pricing pools
-   and lookup index.
-
-### Live-scrape engines
-
-- **Default (no key):** a vendored Perseus reader
-  (`scripts/vendor/`, MIT — from `KyuRish/fiverr-mcp-server`) parses Fiverr's
-  page data via browser-TLS impersonation. Best from a **residential IP**;
-  otherwise set `PROXY_URL` to a residential proxy. This is the **only** engine
-  that returns `gig_count_in_search` (the "X services available" total).
-  Needs `curl-cffi` + `beautifulsoup4` (`pip install -r requirements.txt`).
-- **Fallback (Apify, optional):** run with `--engine apify`, pass
-  `--api-key`/`APIFY_TOKEN`, and set `scraper.actor_id` in
-  `scoring-config.json`. It **cannot** supply the search total (use a manual
-  count for that). Scraping costs are yours.
-
-### Import your existing Fiverr profile (optional)
-
-Already selling? Paste your profile link and the skill pre-fills Step 1 instead
-of asking you to type everything:
-
-```
-python3 scripts/import_profile.py --url https://www.fiverr.com/<username>
+```bash
+python -m pip install -r requirements.txt
 ```
 
-It returns your display name, seller level, and **each existing gig with its
-current packages (prices, delivery, tags)** plus service seeds for keyword
-ideas — so the skill can benchmark *your* prices against the market and rewrite
-gigs you already have. **Public data only:** no login, and no private analytics
-(impressions, clicks, earnings). Same residential-IP/`PROXY_URL` rules as the
-scrape engine.
+## Data paths
 
-## Scoring (auditable, tunable)
+1. **Bundled sample data:** free and deterministic, but partial and dated.
+2. **Manual current count:** paste the “services available” count shown in your
+   own Fiverr browser session.
+3. **User-owned JSON/CSV:** build local pricing pools and an index from data you
+   lawfully collected or exported:
 
-All constants live in `references/scoring-config.json`.
-
-- **Competition score (0–100, higher = less competition).** Piecewise-linear
-  over `log10(gig_count)`, anchored `(1→100), (200→70), (2000→40), (20000→0)`.
-  Example: `gig_count=24 → 82` (LOW). `gig_count=0 → UNTESTED` (not a top score).
-- **Demand score.** Median review count of the top competitors, normalized to a
-  ceiling. `null` when no competitor data is available — never guessed.
-- **Opportunity.** `0.6·competition + 0.4·demand` (competition-only, flagged,
-  when demand is unavailable).
-- **Pricing.** Per-tier percentiles of real competitor prices: Basic = p25,
-  Standard = median, Premium = p75 (new sellers shift lower to win first
-  reviews). Tiers with too few samples are flagged low-confidence.
-
-Edit the anchors, weights, thresholds, and FX table to retune — nothing is
-hidden in the model.
-
-## Contributing data
-
-<img src="assets/mascot-hug.png" width="140" align="right" alt="The robot scout hugging a pull-request icon — contributions grow the community dataset">
-
-Contribution is **opt-in and OFF by default** — nothing is shared unless you
-explicitly run `contribute.py` *without* `--dry-run` **and** set `HF_TOKEN`.
-There is no background upload and no auto-share setting.
-
-1. **Preview (shares nothing):**
-   `python3 scripts/contribute.py --input benchmarks.local.json --dry-run`
-   prints the exact cleaned, de-duplicated rows that *would* be shared.
-2. **Turn it on:** set `HF_TOKEN`, then
-   `python3 scripts/contribute.py --input benchmarks.local.json --contributor "Your Name"`
-   opens a pull request to the community Hugging Face dataset.
-
-`contribute.py` strips all seller-identifying fields to the keep-list,
-deduplicates, and credits you in `CONTRIBUTORS.md`. A PII guard aborts the
-upload if any disallowed field is present. See [`DATA_POLICY.md`](DATA_POLICY.md)
-for the full keep/strip list.
-
-**One step from a scrape:** `scrape.py … --contribute --token <hf>` runs the same
-anonymized upload right after scraping. It's **token-gated and always announced**
-— never a silent background push. To make it habitual, set
-`scraper.auto_contribute: true` in `scoring-config.json` (still requires a token;
-still prints what it's sharing).
-
-**No data is ever destroyed.** Every scrape **accumulates** into the local file
-by default (append-only, de-duped), so your benchmark grows across runs and is
-always ready to contribute later. `--overwrite` starts fresh but first renames
-the previous file to a timestamped `.bak-*.json`; an unreadable file is
-preserved as `.corrupt-*.json` rather than clobbered; all writes are atomic.
-
-### Refreshing from the community dataset (the read side)
-
-As the shared dataset grows, pull it back into your local sample to improve
-Path A results:
-
-```
-python3 scripts/refresh_dataset.py             # validate + merge clean new rows
-python3 scripts/refresh_dataset.py --dry-run   # preview only, write nothing
+```bash
+python skills/fiverr-gig-optimizer/scripts/build_benchmarks.py --csv rows.csv
 ```
 
-It merges only data that is **uncorrupted** (every row is schema-validated; a
-file that won't parse or a corrupt fraction above `--max-corrupt-ratio` is
-**refused**, leaving your local file untouched) and **sufficient** (it no-ops if
-there are fewer than `--min-new` clean, new rows). Scoring keeps reading the
-local file afterwards, so determinism is preserved — the file just gets richer.
+No Fiverr email, password, cookie, or private analytics are requested or stored.
 
-### Auto-merging contributions (maintainer bot)
+## Core commands
 
-When contributions arrive faster than you can review them,
-`automerge_prs.py` merges the safe ones automatically:
+```bash
+# Look up a keyword in the bundled/local dataset
+python skills/fiverr-gig-optimizer/scripts/query_dataset.py --keyword "ai chatbot"
 
-```
-python3 scripts/automerge_prs.py --dry-run   # decide only, merge nothing
-python3 scripts/automerge_prs.py             # merge clean PRs, hold the rest
-```
+# Score a real count (never guessed)
+python skills/fiverr-gig-optimizer/scripts/score_keyword.py --keyword "ai chatbot" --gig-count 240
 
-It auto-merges a PR **only** when it's purely additive (`contributions/*.json`
-only — nothing removed or modified), under `--max-rows`, and every row passes
-schema/range/PII validation (`--max-corrupt-ratio`, default `0` = any invalid
-row holds the PR). Anything else is commented and left open for a human. The
-scheduled GitHub Action `.github/workflows/automerge-dataset-prs.yml` runs it for
-you — add an `HF_TOKEN` repo secret with write scope.
+# Validate a completed catalog against the reviewed policy snapshot
+python skills/fiverr-gig-optimizer/scripts/validate_gig.py gig-config.json
 
-**Caveat:** schema validation proves rows are well-formed and PII-free, not that
-the numbers are *authentic*. Auto-merge trades human review for scale; the
-dataset is versioned, so any bad merge is revertible. Tighten the gates, or keep
-the Action on `--dry-run` and merge by hand, if you prefer.
+# Render only after policy validation passes
+python skills/fiverr-gig-optimizer/scripts/build_catalog.py gig-config.json --out fiverr-catalog.html
 
-#### CI token setup
-
-The Action authenticates with a Hugging Face token stored as the repo secret
-`HF_TOKEN`. Create a **fine-grained** token at
-[huggingface.co/settings/tokens](https://huggingface.co/settings/tokens),
-scoped to **just the dataset repo** (least privilege). Under **Repositories
-permissions**, add your `<owner>/fiverr-gigs` repo and check exactly:
-
-- **Write access to contents/settings of selected repos** — create commits / merge PRs
-- **Interact with discussions / Open pull requests on selected repos** — open, comment, merge
-
-Leave everything else unchecked (no Inference, Webhooks, Billing, Jobs, Org).
-Then set the secret:
-
-```
-gh secret set HF_TOKEN -R <owner>/fiverr-gig-optimizer
+# Check whether official policy sources changed
+python skills/fiverr-gig-optimizer/scripts/sync_policy_sources.py
 ```
 
-Use a **dedicated fine-grained token**, not an `hf auth login` OAuth token —
-OAuth tokens expire and will eventually break the scheduled run.
-(`refresh_dataset.py` needs no token; it only reads the public dataset.)
+## Current reviewed Fiverr constraints
 
-## No ML, no auto-scraping, no guessed numbers
+The machine-readable source of truth is
+[`policy-rules.json`](skills/fiverr-gig-optimizer/references/policy-rules.json),
+reviewed on **2026-09-30**. Highlights include:
 
-- No machine learning, training, or ranking prediction — scoring is rule-based.
-- No scraping by default; live scraping is opt-in (the default engine needs no
-  key — an Apify key is only for the optional fallback).
-- No model-estimated competition counts or prices, anywhere.
+- title starts with “I will,” stays within 80 characters, and avoids discouraged
+  special characters;
+- 1–5 relevant tags and descriptions up to 1,200 characters;
+- up to three packages, at least one revision per package, and a $5 platform
+  minimum where a category does not require more;
+- recommended Gig image size 1280×769, with no more than 10 words of image text;
+- no Fiverr logos, ratings, seller-level badges, contact details, or material
+  you do not have permission to use in Gig images.
 
-## License
+Rules can change, category-specific requirements can be stricter, and a passing
+local check never guarantees platform approval. Always review the linked official
+sources before publishing.
 
-- **Code:** MIT — [`LICENSE`](LICENSE).
-- **Data + docs:** CC-BY-4.0 — [`LICENSE-DATA`](LICENSE-DATA).
-- Community dataset (CC-BY-4.0): set in `scoring-config.json → dataset_repo`
-  [https://huggingface.co/datasets/Ahad690/fiverr-gigs](https://huggingface.co/datasets/Ahad690/fiverr-gigs).
+## Community dataset
 
-## Troubleshooting
+Contribution is opt-in and off by default. Configure your own Hugging Face
+dataset URL in `scoring-config.json`, preview the exact anonymized rows, and only
+then upload:
 
-- **No Chrome/Edge:** `build_pdfs.py` warns and exits 0; the HTML catalog still
-  renders. PDFs are optional.
-- **Scrape returns nothing / "blocked":** the primary engine relies on TLS
-  impersonation. It works from a residential IP; from a datacenter/VPN IP set
-  `PROXY_URL` to a residential proxy, or configure the Apify fallback (with a key).
-- **HTTP 429 on scrape:** you're rate-limited — wait and retry, or lower
-  `--limit` (the engine already throttles ~2s/request; raise `RATE_LIMIT_DELAY`).
-- **Low-confidence pricing:** a tier had fewer than `min_samples` prices; the
-  number is shown but flagged. Add data (manual or scrape) to firm it up.
-- **Low match confidence / no match:** the sample dataset doesn't cover your
-  keyword well; paste the Fiverr count (Path B) so the skill can score it.
-
-## Development
-
-```
-python -m unittest discover -s tests -p "test_*.py" -v
+```bash
+python skills/fiverr-gig-optimizer/scripts/contribute.py --input benchmarks.local.json --dry-run
 ```
 
-Project layout, scoring spec, and build order live in
-`fiverr-gig-optimizer-PRD-v1.1.md`.
+The uploader rebuilds every row from an allow-list and rejects seller-identifying
+fields. See the [data policy](docs/governance/DATA_POLICY.md).
 
-## Related projects (same honesty architecture)
+## Architecture and project evidence
 
-fiverr-gig-optimizer is part of a family of **local-first, no-fabricated-numbers
-Claude Code skills** — deterministic scripts, provenance-labeled outputs, an
-HTML deliverable, append-only local data, opt-in federation. The shared design
-is documented in [patterns/hf-community-dataset](patterns/hf-community-dataset/HF_AUTOMERGE_PATTERN.md).
+- [Documentation index](docs/README.md)
+- [ChatGPT and Codex setup](docs/guides/OPENAI_SETUP.md)
+- [System architecture](docs/architecture/SYSTEM_ARCHITECTURE.md)
+- [Catalog wireframe](docs/wireframes/CATALOG_WIREFRAME.md)
+- [Policy-review wireframe](docs/wireframes/POLICY_REVIEW_WIREFRAME.md)
+- [Testing and coverage](docs/quality/TESTING.md)
+- [Reproducible evidence records](records/README.md)
 
-- [**GrowthKit**](https://github.com/Ahad690/growthkit-skill) — honest
-  short-form-video marketing (TikTok/Reels/Shorts) for SaaS & apps.
-- [**AppScope** (open-app-intel)](https://github.com/Ahad690/open-app-intel) —
-  self-hosted app market intelligence with confidence-banded estimates.
+## Ownership and connection
 
-<div align="center">
-<img src="assets/mascot-sleep.png" width="120" alt="The robot scout asleep against a stack of gig cards, battery low, zzz">
-<br>
-<sub><code>~ end of file · zero numbers were guessed ~</code></sub>
-<img src="https://capsule-render.vercel.app/api?type=waving&height=90&color=0:1dbf73,100:0a2e1c&section=footer" alt="" width="100%">
-</div>
+This working copy intentionally has no Git `origin` tied to a previous owner.
+After creating your own empty repository, connect it with:
+
+```bash
+git remote add origin https://github.com/YOUR_GITHUB_USERNAME/fiverr-gig-optimizer.git
+git push -u origin main
+```
+
+Also replace `Repository Owner` in `.claude-plugin/*.json`, set your dataset URL
+in `scoring-config.json`, and add `HF_TOKEN` only if you choose to use the
+community-dataset workflow. Never commit passwords or tokens.
+
+For GitHub's repository Social Preview, upload `assets/og-card.png` under
+**Settings → General → Social preview**. The generated catalog also includes
+Open Graph and Twitter Card metadata pointing to that asset when hosted.
+
+## Test
+
+```bash
+python -m coverage run -m pytest -q
+python -m coverage report -m
+```
+
+Code is MIT licensed. Data and documentation use CC BY 4.0; see
+[`LICENSE-DATA`](LICENSE-DATA).
