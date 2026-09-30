@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Fiverr Gig Optimizer logo</title>
+  <desc id="desc">Original green rounded-square logo with an FGO monogram and checkmark.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#1dbf73"/><stop offset="1" stop-color="#159a5c"/>
+    </linearGradient>
+    <filter id="s" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="20" flood-opacity=".28"/></filter>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#08130e"/>
+  <rect x="42" y="42" width="428" height="428" rx="92" fill="url(#bg)" filter="url(#s)"/>
+  <circle cx="256" cy="256" r="154" fill="#08130e" opacity=".96"/>
+  <text x="256" y="280" text-anchor="middle" fill="#fff" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="112" font-weight="850" letter-spacing="-5">FGO</text>
+  <path d="m189 333 34 34 100-108" fill="none" stroke="#1dbf73" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="402" cy="110" r="22" fill="#fff"/>
+</svg>
