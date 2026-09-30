@@ -1,0 +1,38 @@
+{
+  "name": "fiverr-gig-optimizer",
+  "version": "1.2.0",
+  "description": "Policy-aware Fiverr gig research, pricing, copy, and catalog generation using deterministic local scripts.",
+  "author": {
+    "name": "Repository Owner"
+  },
+  "license": "MIT",
+  "keywords": [
+    "fiverr",
+    "freelance",
+    "gig",
+    "pricing",
+    "seo",
+    "catalog"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Fiverr Gig Optimizer",
+    "shortDescription": "Evidence-backed Gig research and policy checks",
+    "longDescription": "Build Fiverr Gig catalogs from user-owned inputs with deterministic scoring, pricing provenance, policy validation, thumbnail guidance, and launch planning. No Fiverr password or session access is required.",
+    "developerName": "Repository Owner",
+    "category": "Productivity",
+    "capabilities": [
+      "Research",
+      "Analysis",
+      "File creation"
+    ],
+    "defaultPrompt": [
+      "Optimize my Fiverr services into policy-aware Gigs.",
+      "Score these Fiverr keywords using my real counts.",
+      "Review my Gig catalog before I publish it."
+    ],
+    "brandColor": "#1DBF73",
+    "composerIcon": "./assets/plugin-icon.png",
+    "logo": "./assets/plugin-logo.png"
+  }
+}
