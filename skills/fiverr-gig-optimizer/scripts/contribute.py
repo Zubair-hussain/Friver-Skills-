@@ -85,7 +85,9 @@ def assert_no_pii(rows):
 
 def append_contributor(name):
     here = os.path.dirname(os.path.abspath(__file__))
-    path = os.path.abspath(os.path.join(here, "..", "..", "..", "CONTRIBUTORS.md"))
+    path = os.path.abspath(os.path.join(
+        here, "..", "..", "..", "docs", "governance", "CONTRIBUTORS.md"
+    ))
     line = f"- {name}\n"
     try:
         with open(path, encoding="utf-8") as fh:
@@ -163,7 +165,12 @@ def main(argv=None):
         return 0
 
     cfg = load_config(args.config)
-    repo_id = cfg["dataset_repo"].rstrip("/").split("datasets/")[-1]
+    dataset_repo = cfg.get("dataset_repo", "")
+    if not dataset_repo or "<" in dataset_repo:
+        print("error: no community dataset is configured. Set dataset_repo in "
+              "scoring-config.json first.", file=sys.stderr)
+        return 1
+    repo_id = dataset_repo.rstrip("/").split("datasets/")[-1]
     if args.token:  # cache a freshly-pasted token so it is a one-time step
         try:
             from huggingface_hub import login
@@ -180,7 +187,7 @@ def main(argv=None):
               "pass --token / set HF_TOKEN.", file=sys.stderr)
         return 1
 
-    pr_url = open_hf_pr(cleaned, cfg["dataset_repo"], token, args.contributor)
+    pr_url = open_hf_pr(cleaned, dataset_repo, token, args.contributor)
     append_contributor(args.contributor)
     print(f"Opened dataset PR with {len(cleaned)} rows: {pr_url}")
     return 0
