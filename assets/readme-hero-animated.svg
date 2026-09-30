@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Fiverr Gig Optimizer animated overview</title>
+  <desc id="desc">Animated green data flow connecting real inputs to deterministic scoring, policy validation, and professional output.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#06110c"/><stop offset="1" stop-color="#12221a"/></linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#1dbf73"/><stop offset="1" stop-color="#62f6b2"/></linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#8cb6a0" opacity=".14"/></pattern>
+    <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <style>
+      .title{font:800 46px Inter,Segoe UI,Arial,sans-serif;fill:#fff}.sub{font:500 18px Inter,Segoe UI,Arial,sans-serif;fill:#a9c0b4}.label{font:700 15px Inter,Segoe UI,Arial,sans-serif;fill:#eafff3}.small{font:500 13px Inter,Segoe UI,Arial,sans-serif;fill:#8faf9e}
+      .flow{stroke-dasharray:10 13;animation:dash 2.8s linear infinite}.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-in-out infinite}.float{animation:float 4s ease-in-out infinite}.scan{animation:scan 3.5s ease-in-out infinite}
+      @keyframes dash{to{stroke-dashoffset:-46}}@keyframes pulse{50%{transform:scale(1.12);opacity:.72}}@keyframes float{50%{transform:translateY(-7px)}}@keyframes scan{0%,15%{transform:translateX(-260px);opacity:0}35%,65%{opacity:.55}85%,100%{transform:translateX(620px);opacity:0}}
+      @media (prefers-reduced-motion:reduce){.flow,.pulse,.float,.scan{animation:none}}
+    </style>
+  </defs>
+  <rect width="1200" height="360" rx="24" fill="url(#bg)"/><rect width="1200" height="360" rx="24" fill="url(#grid)"/>
+  <g transform="translate(54 54)"><circle cx="22" cy="22" r="22" fill="#1dbf73"/><path d="m12 22 7 7 14-16" fill="none" stroke="#06110c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="18" class="title">Fiverr Gig Optimizer</text><text x="62" y="48" class="sub">Real inputs → auditable scores → policy-aware publishing</text></g>
+  <g transform="translate(55 170)" class="float"><rect width="245" height="120" rx="17" fill="#101f17" stroke="#345844"/><text x="22" y="34" class="label">REAL INPUTS</text><text x="22" y="65" class="small">Manual counts</text><text x="22" y="88" class="small">Licensed JSON / CSV</text><circle cx="210" cy="60" r="17" fill="#1dbf73" class="pulse"/></g>
+  <path d="M310 230H450" fill="none" stroke="#36dc8e" stroke-width="4" class="flow"/>
+  <g transform="translate(460 150)"><rect width="285" height="160" rx="20" fill="#10301f" stroke="#1dbf73" stroke-width="2"/><text x="24" y="36" class="label">DETERMINISTIC CORE</text><rect x="24" y="55" width="108" height="38" rx="9" fill="#0a1710"/><text x="45" y="80" class="small">SCORE</text><rect x="153" y="55" width="108" height="38" rx="9" fill="#0a1710"/><text x="174" y="80" class="small">PRICE</text><rect x="24" y="108" width="237" height="31" rx="8" fill="#1dbf73" opacity=".16"/><text x="82" y="129" class="small">POLICY PREFLIGHT</text><rect x="-20" y="0" width="90" height="160" fill="url(#green)" opacity="0" class="scan"/></g>
+  <path d="M755 230H895" fill="none" stroke="#36dc8e" stroke-width="4" class="flow"/>
+  <g transform="translate(905 170)" class="float"><rect width="240" height="120" rx="17" fill="#101f17" stroke="#345844"/><text x="22" y="34" class="label">PRO OUTPUT</text><text x="22" y="65" class="small">Catalog + thumbnails</text><text x="22" y="88" class="small">Provenance on every score</text><path d="m195 65 10 10 22-27" fill="none" stroke="#1dbf73" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" class="pulse"/></g>
+</svg>
