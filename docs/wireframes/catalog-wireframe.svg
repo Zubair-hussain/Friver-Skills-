@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">Catalog page wireframe</title><desc id="desc">Desktop and mobile wireframes for the generated Fiverr Gig catalog.</desc>
+  <rect width="1440" height="900" rx="26" fill="#0a120e"/><style>.o{fill:#111d17;stroke:#52705f;stroke-width:2}.a{fill:#163624;stroke:#1dbf73;stroke-width:2}.h{font:700 28px Segoe UI,sans-serif;fill:#fff}.t{font:600 17px Segoe UI,sans-serif;fill:#c5d6cd}.s{font:400 14px Segoe UI,sans-serif;fill:#91a89b}.n{font:700 14px Segoe UI,sans-serif;fill:#07130d}</style>
+  <text x="55" y="58" class="h">Generated Catalog — Responsive Wireframe</text>
+  <g transform="translate(55 95)">
+    <rect width="940" height="750" rx="22" class="o"/><text x="30" y="42" class="t">DESKTOP • 1100px content</text>
+    <rect x="30" y="70" width="880" height="80" rx="12" class="a"/><text x="55" y="104" class="t">Catalog header + seller</text><text x="55" y="130" class="s">Data provenance • policy review date • contribution state</text>
+    <rect x="30" y="175" width="880" height="410" rx="16" class="o"/><text x="55" y="210" class="t">Gig card</text>
+    <rect x="55" y="235" width="390" height="235" rx="14" class="a"/><text x="175" y="355" class="t">1280 × 769 preview</text>
+    <rect x="480" y="235" width="405" height="70" rx="12" class="o"/><text x="505" y="276" class="s">Basic • Standard • Premium</text>
+    <rect x="480" y="325" width="405" height="85" rx="12" class="o"/><text x="505" y="362" class="s">Title / tags / description actions</text>
+    <rect x="480" y="430" width="405" height="40" rx="10" fill="#1dbf73"/><text x="585" y="456" class="n">COPY APPROVED CONTENT</text>
+    <rect x="55" y="495" width="830" height="60" rx="10" class="o"/><text x="75" y="532" class="s">Description • cross-sell • score flags</text>
+    <rect x="30" y="610" width="880" height="110" rx="14" class="o"/><text x="55" y="648" class="t">Launch plan</text><text x="55" y="680" class="s">Phase 1 → Phase 2 → Phase 3, with cross-sell relationships</text>
+  </g>
+  <g transform="translate(1045 95)">
+    <rect width="340" height="750" rx="32" class="o"/><text x="25" y="42" class="t">MOBILE • stacked</text>
+    <rect x="20" y="70" width="300" height="105" rx="12" class="a"/><text x="40" y="112" class="t">Header</text><text x="40" y="142" class="s">Provenance remains visible</text>
+    <rect x="20" y="195" width="300" height="510" rx="16" class="o"/>
+    <rect x="40" y="225" width="260" height="155" rx="12" class="a"/><text x="95" y="307" class="s">Image preview</text>
+    <rect x="40" y="400" width="260" height="75" rx="10" class="o"/><text x="65" y="442" class="s">Package cards scroll</text>
+    <rect x="40" y="495" width="260" height="55" rx="10" fill="#1dbf73"/><text x="112" y="528" class="n">COPY</text>
+    <rect x="40" y="570" width="260" height="105" rx="10" class="o"/><text x="65" y="620" class="s">Description</text><text x="65" y="646" class="s">and score flags</text>
+  </g>
+</svg>
