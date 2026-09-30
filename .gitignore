@@ -14,10 +14,12 @@ __pycache__/
 *.pyc
 *.pyo
 .pytest_cache/
+.coverage
 .venv/
 venv/
 
 # Generated output
+dist/
 fiverr-catalog.html
 gig-config.json
 *.pdf
