@@ -22,6 +22,9 @@ CLI:
 import argparse
 import json
 import sys
+from html import escape as html_escape
+
+import validate_gig
 
 HTML_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
@@ -29,6 +32,12 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fiverr Gig Catalog</title>
+<meta name="description" content="Evidence-backed Fiverr Gig catalog with auditable scoring and policy preflight checks.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fiverr Gig Optimizer">
+<meta property="og:description" content="Real inputs. Auditable scores. Safer publishing.">
+<meta property="og:image" content="assets/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   :root { --bg:#0b0f14; --card:#141b24; --ink:#e6edf3; --mut:#8b98a5; --line:#222d3a; }
   * { box-sizing:border-box; }
@@ -75,6 +84,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <header>
   <h1>Fiverr Gig Catalog __SELLER__</h1>
   <div class="prov">__PROVENANCE__</div>
+  <div class="prov">Policy preflight: Fiverr rules reviewed __POLICY_DATE__</div>
   __CONTRIB__
 </header>
 <div class="wrap" id="app"></div>
@@ -236,10 +246,12 @@ def render(config):
     )
     import reminders
     html = HTML_TEMPLATE
-    html = html.replace("__SELLER__", seller_line)
-    html = html.replace("__PROVENANCE__", prov_line)
+    html = html.replace("__SELLER__", html_escape(seller_line))
+    html = html.replace("__PROVENANCE__", html_escape(prov_line))
+    html = html.replace("__POLICY_DATE__", html_escape(validate_gig.load_rules()["reviewed_at"]))
     html = html.replace("__CONTRIB__", reminders.contribution_html())
-    html = html.replace("__CONFIG_JSON__", json.dumps(config))
+    safe_json = json.dumps(config).replace("<", "\\u003c").replace(">", "\\u003e")
+    html = html.replace("__CONFIG_JSON__", safe_json)
     return html
 
 
@@ -251,6 +263,15 @@ def main(argv=None):
 
     with open(args.config, encoding="utf-8") as fh:
         config = json.load(fh)
+
+    policy = validate_gig.validate_catalog(config)
+    for warning in policy["warnings"]:
+        print(f"warning: {warning}", file=sys.stderr)
+    if policy["errors"]:
+        for error in policy["errors"]:
+            print(f"error: {error}", file=sys.stderr)
+        print("Catalog not written; fix the policy errors above.", file=sys.stderr)
+        return 2
 
     html = render(config)
     with open(args.out, "w", encoding="utf-8") as fh:
