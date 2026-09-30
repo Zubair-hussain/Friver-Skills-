@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-09-30",
+  "review_due_after_days": 90,
+  "sources": [
+    {
+      "id": "creating-a-gig",
+      "url": "https://help.fiverr.com/hc/en-us/articles/360010451397-Creating-a-Gig",
+      "api_url": "https://help.fiverr.com/api/v2/help_center/en-us/articles/360010451397.json"
+    },
+    {
+      "id": "gig-requirements",
+      "url": "https://help.fiverr.com/hc/en-us/articles/360011421218-Requirements-and-guidelines-for-your-Gig",
+      "api_url": "https://help.fiverr.com/api/v2/help_center/en-us/articles/360011421218.json"
+    },
+    {
+      "id": "gig-images",
+      "url": "https://help.fiverr.com/hc/en-us/articles/15863342952977-Creating-Gig-images-and-tagging-your-Gig-gallery",
+      "api_url": "https://help.fiverr.com/api/v2/help_center/en-us/articles/15863342952977.json"
+    },
+    {
+      "id": "community-standards",
+      "url": "https://help.fiverr.com/hc/en-us/articles/37333125829649-Our-Community-Standards",
+      "api_url": "https://help.fiverr.com/api/v2/help_center/en-us/articles/37333125829649.json"
+    },
+    {
+      "id": "prohibited-services",
+      "url": "https://help.fiverr.com/hc/en-us/articles/49174165608593-Prohibited-services-on-Fiverr",
+      "api_url": "https://help.fiverr.com/api/v2/help_center/en-us/articles/49174165608593.json"
+    }
+  ],
+  "gig": {
+    "title_max_chars": 80,
+    "title_prefix": "I will",
+    "title_avoid_characters": ["&", "/", "\"", "+"],
+    "tags_min": 1,
+    "tags_max": 5,
+    "description_max_chars": 1200,
+    "packages_max": 3,
+    "minimum_price_usd": 5,
+    "minimum_revisions": 1,
+    "image_text_max_words": 10,
+    "image_recommended_width": 1280,
+    "image_recommended_height": 769,
+    "image_min_width": 712,
+    "image_min_height": 430,
+    "image_max_width": 4000,
+    "image_max_height": 2416,
+    "gallery_images_max": 3,
+    "gallery_pdfs_max": 2,
+    "faq_max": 10
+  },
+  "account_gig_limits": {
+    "new": 4,
+    "level_1": 10,
+    "level_2": 10,
+    "top_rated": 30
+  }
+}
