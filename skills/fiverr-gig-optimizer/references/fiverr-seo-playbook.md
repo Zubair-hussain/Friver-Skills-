@@ -21,7 +21,7 @@ guessing a market figure. This file governs **copy and presentation** only.
 
 ## 2. Tags (hard constraint)
 
-- **Exactly 5 tags.**
+- **1–5 relevant tags** (use five only when all five are genuinely relevant).
 - Lowercase, 1–2 words each, no punctuation.
 - Tag 1 = the primary keyword. Tags 2–5 = the strongest matching tokens from
   the scored keyword/combo and its tool stack.
@@ -79,3 +79,6 @@ highlight.
   **computed** label — copy it verbatim from the score output.
 - `tools` — 2–4 tool/tech names actually used (e.g. `OpenAI`, `LangChain`, `n8n`).
 - `pdfWhat` — one-line plain-English summary for the optional PDF.
+- Keep all visible image copy to **10 words or fewer** where possible.
+- Never add a Fiverr logo, rating, seller-level badge, contact details, or a
+  third-party logo without the rights holder's permission.
