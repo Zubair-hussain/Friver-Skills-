@@ -1,0 +1,29 @@
+[run]
+branch = True
+source = skills/fiverr-gig-optimizer/scripts
+omit =
+    */automerge_prs.py
+    */build_pdfs.py
+    */contribute.py
+    */import_profile.py
+    */refresh_dataset.py
+    */reminders.py
+    */scrape.py
+    */sync_policy_sources.py
+    */token_bootstrap.py
+    */seed/*
+    */vendor/*
+
+[report]
+show_missing = True
+skip_covered = False
+fail_under = 90
+exclude_lines =
+    pragma: no cover
+    if __name__ == .__main__.:
+
+[html]
+directory = records/coverage/html
+
+[json]
+output = records/coverage/coverage.json
