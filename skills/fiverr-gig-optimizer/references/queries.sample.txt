@@ -1,8 +1,8 @@
-# Default scrape-rotation keyword pool.
+# Example keyword pool for manual or licensed dataset refreshes.
 #
-# A daily runner picks one line per day (see USER_MANUAL.md), so the pool size is
-# also the revisit interval: 33 keywords -> each is re-scraped about monthly, which
-# comfortably outpaces how fast Fiverr pricing and gig counts actually move.
+# Use these only as research prompts. Automated Fiverr marketplace scraping is
+# outside the supported workflow; current counts must come from the user or a
+# dataset they are permitted to use.
 #
 # Why breadth matters: competition counts and price percentiles are only useful in
 # the category you sell in. A pool covering just one vertical produces a dataset
