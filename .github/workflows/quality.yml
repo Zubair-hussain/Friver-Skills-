@@ -25,7 +25,7 @@ jobs:
           python -m coverage report -m
           python -m coverage json
       - name: Upload test and coverage evidence
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: quality-evidence
           path: |
