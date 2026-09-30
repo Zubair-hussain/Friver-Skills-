@@ -275,5 +275,5 @@ rendered by `build_catalog.py` into the catalog the user opens.)*
 ---
 
 *Reference implementation this was extracted from:
-[Ahad690/fiverr-gig-optimizer](https://github.com/Ahad690/fiverr-gig-optimizer)
+`fiverr-gig-optimizer` (configure your own repository URL)
 (`skills/fiverr-gig-optimizer/scripts/{contribute,refresh_dataset,automerge_prs}.py`).*
