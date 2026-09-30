@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "sources": {
+    "creating-a-gig": {
+      "url": "https://help.fiverr.com/hc/en-us/articles/360010451397-Creating-a-Gig",
+      "sha256": "4d75e2f34f605bdc8ac55aecdeffb1656fb502ea9ed4109c416d133fcdb7ba4c",
+      "first_seen_at": "2026-09-30T12:15:54+00:00",
+      "changed_at": "2026-09-30T12:15:54+00:00"
+    },
+    "gig-requirements": {
+      "url": "https://help.fiverr.com/hc/en-us/articles/360011421218-Requirements-and-guidelines-for-your-Gig",
+      "sha256": "7ae175754ba2688a0d50f5d0a1eeb834c1aa4676d4813f48c713f0f3c9771bb2",
+      "first_seen_at": "2026-09-30T12:15:54+00:00",
+      "changed_at": "2026-09-30T12:15:54+00:00"
+    },
+    "gig-images": {
+      "url": "https://help.fiverr.com/hc/en-us/articles/15863342952977-Creating-Gig-images-and-tagging-your-Gig-gallery",
+      "sha256": "68418fef9c03e4ca4ba41cb519b6c2cbae30ea6c2424be6ddc906a6fb8088cd8",
+      "first_seen_at": "2026-09-30T12:15:54+00:00",
+      "changed_at": "2026-09-30T12:15:54+00:00"
+    },
+    "community-standards": {
+      "url": "https://help.fiverr.com/hc/en-us/articles/37333125829649-Our-Community-Standards",
+      "sha256": "5163f66861484aa7d43a4406a5619f02ee0c8620a9b3e200f40e337f7913837f",
+      "first_seen_at": "2026-09-30T12:15:54+00:00",
+      "changed_at": "2026-09-30T12:15:54+00:00"
+    },
+    "prohibited-services": {
+      "url": "https://help.fiverr.com/hc/en-us/articles/49174165608593-Prohibited-services-on-Fiverr",
+      "sha256": "903c492539d7a8d2d6d4ad90f4c42925814621ead7f40c516af4cc52e8b27744",
+      "first_seen_at": "2026-09-30T12:15:54+00:00",
+      "changed_at": "2026-09-30T12:15:54+00:00"
+    }
+  }
+}

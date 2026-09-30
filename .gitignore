@@ -1,0 +1,32 @@
+# Local working data (never committed — see §7.4), incl. the timestamped
+# backups local_data.py makes instead of ever destroying a file
+*.local.json
+*.bak-*.json
+*.corrupt-*.json
+*.json.tmp
+
+# Secrets
+.env
+.env.*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.coverage
+.venv/
+venv/
+
+# Generated output
+dist/
+fiverr-catalog.html
+gig-config.json
+*.pdf
+
+# OS
+.DS_Store
+Thumbs.db
+
+# remembered federation contributor name (local only)
+.contributor

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="920" viewBox="0 0 1440 920" role="img" aria-labelledby="title desc">
+  <title id="title">Fiverr Gig Optimizer system architecture</title>
+  <desc id="desc">A layered architecture from user-owned inputs through deterministic analysis, policy validation, output rendering, evidence, and optional external services.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07130d"/><stop offset="1" stop-color="#111b17"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity=".28"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#5de3a2"/></marker>
+    <style>
+      .h{font:700 34px Inter,Segoe UI,sans-serif;fill:#fff}.sub{font:400 18px Inter,Segoe UI,sans-serif;fill:#9fb7aa}
+      .t{font:700 20px Inter,Segoe UI,sans-serif;fill:#fff}.b{font:400 15px Inter,Segoe UI,sans-serif;fill:#b7c9bf}
+      .box{fill:#101d17;stroke:#315343;stroke-width:2}.core{fill:#113022;stroke:#1dbf73;stroke-width:2}.ext{fill:#17221d;stroke:#8aa89a;stroke-width:2;stroke-dasharray:8 7}
+      .line{fill:none;stroke:#5de3a2;stroke-width:3;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1440" height="920" rx="28" fill="url(#bg)"/>
+  <text x="70" y="70" class="h">System Architecture</text>
+  <text x="70" y="104" class="sub">Local-first • deterministic measurements • reviewable policy automation</text>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="165" width="285" height="220" rx="20" class="box"/>
+    <text x="100" y="205" class="t">1. User-owned inputs</text>
+    <text x="100" y="245" class="b">• Services and experience</text><text x="100" y="278" class="b">• Manual search counts</text>
+    <text x="100" y="311" class="b">• Licensed JSON / CSV</text><text x="100" y="344" class="b">• Existing Gig copy</text>
+
+    <rect x="455" y="145" width="510" height="300" rx="22" class="core"/>
+    <text x="490" y="188" class="t">2. Deterministic optimizer core</text>
+    <rect x="490" y="220" width="195" height="72" rx="12" class="box"/><text x="515" y="250" class="t">Query</text><text x="515" y="276" class="b">match + provenance</text>
+    <rect x="735" y="220" width="195" height="72" rx="12" class="box"/><text x="760" y="250" class="t">Score</text><text x="760" y="276" class="b">competition + demand</text>
+    <rect x="490" y="325" width="195" height="72" rx="12" class="box"/><text x="515" y="355" class="t">Price</text><text x="515" y="381" class="b">tier percentiles</text>
+    <rect x="735" y="325" width="195" height="72" rx="12" class="box"/><text x="760" y="355" class="t">Validate</text><text x="760" y="381" class="b">policy preflight</text>
+
+    <rect x="1065" y="165" width="305" height="220" rx="20" class="box"/>
+    <text x="1095" y="205" class="t">3. Professional outputs</text>
+    <text x="1095" y="245" class="b">• Self-contained catalog</text><text x="1095" y="278" class="b">• Gig thumbnail PNGs</text>
+    <text x="1095" y="311" class="b">• Launch and cross-sell plan</text><text x="1095" y="344" class="b">• Provenance on every score</text>
+
+    <rect x="70" y="535" width="380" height="245" rx="20" class="box"/>
+    <text x="100" y="580" class="t">4. Local data safety</text>
+    <text x="100" y="620" class="b">Atomic JSON writes</text><text x="100" y="654" class="b">Append + deduplicate</text>
+    <text x="100" y="688" class="b">Corrupt-file preservation</text><text x="100" y="722" class="b">Explicit overwrite backups</text>
+
+    <rect x="530" y="535" width="380" height="245" rx="20" class="box"/>
+    <text x="560" y="580" class="t">5. Quality and evidence</text>
+    <text x="560" y="620" class="b">94 automated tests</text><text x="560" y="654" class="b">≥90% supported-core coverage</text>
+    <text x="560" y="688" class="b">Policy source fingerprints</text><text x="560" y="722" class="b">Reproducible records folder</text>
+
+    <rect x="990" y="535" width="380" height="245" rx="20" class="ext"/>
+    <text x="1020" y="580" class="t">6. Optional external services</text>
+    <text x="1020" y="620" class="b">Official Help Center API (read)</text><text x="1020" y="654" class="b">Configured HF dataset (opt-in)</text>
+    <text x="1020" y="688" class="b">GitHub Actions review PRs</text><text x="1020" y="722" class="b">No Fiverr credentials</text>
+  </g>
+  <path d="M355 275 H445" class="line"/><path d="M965 275 H1055" class="line"/>
+  <path d="M710 445 V500 H260 V525" class="line"/><path d="M710 445 V525" class="line"/><path d="M710 445 V500 H1180 V525" class="line"/>
+  <text x="70" y="860" class="sub">Trust boundary: dashed components require network access and explicit configuration.</text>
+</svg>

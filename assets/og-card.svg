@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">Fiverr Gig Optimizer</title>
+  <desc id="desc">Professional green and charcoal social card for an independent Fiverr gig optimization tool.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07130d"/>
+      <stop offset="1" stop-color="#111b17"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1dbf73"/>
+      <stop offset="1" stop-color="#48e59b"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000" flood-opacity=".35"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="640" rx="30" fill="url(#bg)"/>
+  <circle cx="1090" cy="100" r="270" fill="#1dbf73" opacity=".08"/>
+  <circle cx="1160" cy="570" r="220" fill="#1dbf73" opacity=".06"/>
+  <g transform="translate(78 82)">
+    <rect width="1124" height="476" rx="30" fill="#101a16" stroke="#284236"/>
+    <rect x="0" y="0" width="12" height="476" rx="6" fill="url(#accent)"/>
+    <g transform="translate(66 62)">
+      <circle cx="28" cy="28" r="28" fill="#1dbf73"/>
+      <path d="M17 29h22M29 17v22" stroke="#07130d" stroke-width="6" stroke-linecap="round"/>
+      <text x="76" y="38" fill="#9fb7aa" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="25" font-weight="650" letter-spacing="2">INDEPENDENT • POLICY-AWARE</text>
+    </g>
+    <text x="66" y="215" fill="#fff" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="80" font-weight="800">Fiverr Gig</text>
+    <text x="66" y="306" fill="#fff" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="80" font-weight="800">Optimizer<tspan fill="#1dbf73">.</tspan></text>
+    <text x="70" y="370" fill="#a9bbb2" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="29">Real inputs. Auditable scores. Safer publishing.</text>
+    <g transform="translate(810 92)" filter="url(#shadow)">
+      <rect width="236" height="286" rx="24" fill="#f4fff8"/>
+      <rect x="28" y="34" width="180" height="20" rx="10" fill="#1dbf73"/>
+      <rect x="28" y="82" width="124" height="14" rx="7" fill="#80988b"/>
+      <rect x="28" y="116" width="170" height="14" rx="7" fill="#c0d0c7"/>
+      <rect x="28" y="150" width="146" height="14" rx="7" fill="#c0d0c7"/>
+      <circle cx="58" cy="222" r="22" fill="#1dbf73"/>
+      <path d="m48 222 7 7 14-16" fill="none" stroke="#07130d" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="94" y="212" width="104" height="20" rx="10" fill="#314a3d"/>
+    </g>
+  </g>
+</svg>

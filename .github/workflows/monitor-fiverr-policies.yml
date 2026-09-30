@@ -1,0 +1,37 @@
+name: Monitor Fiverr policy sources
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 8 * * 1"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check official Help Center pages
+        run: python skills/fiverr-gig-optimizer/scripts/sync_policy_sources.py
+      - name: Open a review PR when a source changes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if git diff --quiet; then exit 0; fi
+          branch="automation/fiverr-policy-${GITHUB_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add skills/fiverr-gig-optimizer/references/policy-source-state.json
+          git commit -m "chore: flag changed Fiverr policy sources"
+          git push origin "$branch"
+          gh pr create --base "${GITHUB_REF_NAME}" --head "$branch" \
+            --title "Review changed Fiverr policy sources" \
+            --body "An official Fiverr Help Center source changed. Review the linked source and update policy-rules.json only when the operational rule changed."
