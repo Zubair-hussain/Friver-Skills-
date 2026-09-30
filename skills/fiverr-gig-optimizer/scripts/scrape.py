@@ -282,6 +282,14 @@ def scrape_apify(query, category, limit, api_key, base_url, actor_id, fx, today)
 
 
 def main(argv=None):
+    print(
+        "error: automated Fiverr marketplace scraping is disabled in the supported "
+        "2026 workflow. Use a manual count or a lawfully obtained JSON/CSV dataset.",
+        file=sys.stderr,
+    )
+    return 2
+
+    # Historical CLI retained below so pure mapping fixtures remain testable.
     ap = argparse.ArgumentParser(description="Opt-in live Fiverr scrape into the canonical schema.")
     ap.add_argument("--query", required=True)
     ap.add_argument("--category")
