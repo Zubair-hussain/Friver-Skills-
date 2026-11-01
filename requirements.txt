@@ -3,7 +3,7 @@
 # uses only the Python standard library and needs none of these.
 
 # Optional community-dataset contribution and refresh.
-huggingface_hub>=0.23,<2
+huggingface_hub>=2.3.0,<3
 
 # Optional: only needed if you regenerate the seed or build benchmarks from
 # large CSVs and prefer pandas over the stdlib csv module.
